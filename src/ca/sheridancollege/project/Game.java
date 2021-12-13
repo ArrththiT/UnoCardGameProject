@@ -50,36 +50,150 @@ public abstract class Game {
     }
 
     /**
-     * Play the game.This might be one method or many method calls depending on your game.
+     * Play the game.This might be one method or many method calls depending on
+     * your game.
+     *
      * @param cardH
      * @param ch
      * @param us
      */
-    public void ComputerDrawFour(ArrayList<Card> cardH, ComputerHand ch, UserHand us){
-        for(int i = 0; i<cardH.size(); i++){
-            if (cardH.get(i).getCardNumber()==Cards.DRAWFOUR){
+    //COMPUTER DRAW FOUR
+    public void ComputerDrawFour(ArrayList<Card> cardH, ComputerHand ch, UserHand us) {
+        for (int i = 0; i < cardH.size(); i++) {
+            if (cardH.get(i).getCardNumber() == Cards.DRAWFOUR) {
                 System.out.println("Opponent will pick up 4 cards");
                 //adding cards to user hand
-                
+                ch.addCards();
+                /*
+                whoever is working on computer and userhand please fill this!
+                 */
 
             }
-      
+
         }
- 
+
     }
-    
-    
-    public void userDrawFour(ArrayList<Card> cardH, ComputerHand ch, UserHand us ){
-        for(int i = 0; i<cardH.size(); i++){
-            if (cardH.get(i).getCardNumber()==Cards.DRAWFOUR){
+
+    //USER DRAW FOUR
+    public void userDrawFour(ArrayList<Card> cardH, ComputerHand ch, UserHand us) {
+        for (int i = 0; i < cardH.size(); i++) {
+            if (cardH.get(i).getCardNumber() == Cards.DRAWFOUR) {
                 System.out.println("Opponent will pick up 4 cards");
                 //adding cards to computer hand
-                us.getSize();
+                us.addCards(); ///who ever is working on adding cards please fill this
 
             }
-      
+
         }
     }
+
+    //SHOW LAST CARD
+    public void showLastCard(ArrayList<GamePile> pile) {
+        for (int i = 0; i < pile.size(); i++) {
+            System.out.println("last card will be the the "
+                    + "latest card" + pile.get(i));
+
+        }
+
+    }
+
+    //DRAW TWO FOR USER
+    public void userDrawTwo(ArrayList<Card> cardH, ComputerHand ch, UserHand us) {
+        for (int i = 0; i < cardH.size(); i++) {
+            if (cardH.get(i).getCardNumber() == Cards.DRAWTWO) {
+                System.out.println("Opponent will pick up 4 cards");
+                //adding cards to computer hand
+                us.addCards(); ///who ever is working on adding cards please fill this
+
+            }
+
+        }
+    }
+    //COMPUTER DRAW TWO
+
+    public void ComputerDrawTwo(ArrayList<Card> cardH, ComputerHand ch, UserHand us) {
+        for (int i = 0; i < cardH.size(); i++) {
+            if (cardH.get(i).getCardNumber() == Cards.DRAWTWO) {
+                System.out.println("Opponent will pick up 4 cards");
+                //adding cards to user hand
+                ch.addCards();
+                /*
+                whoever is working on computer and userhand please fill this!
+                 */
+
+            }
+
+        }
+
+    }
+
+    //COMPUTER WILD
+    public void ComputerWild(ArrayList<Card> cardH, ComputerHand ch) {
+        for (int i = 0; i < cardH.size(); i++) {
+            if (cardH.get(i).getCardNumber() == Cards.WILD) {
+                System.out.println("Computer user will now choose a color");
+                Scanner input = new Scanner(System.in);
+                System.out.println("Please choose between the following: RED, "
+                        + "BLUE, YELLOW, OR GREEN.");
+                String c = input.nextLine();
+                //for red
+                if (c.equalsIgnoreCase(Color.RED.name())) {
+                    System.out.println("Color will now be red");
+                    //for blue
+                }
+                if (c.equalsIgnoreCase(Color.BLUE.name())) {
+                    System.out.println("Color will now be blue");
+                    //for green
+                }
+                if (c.equalsIgnoreCase(Color.GREEN.name())) {
+                    System.out.println("Color will now be green");
+                    //for yellow
+                }
+                if (c.equalsIgnoreCase(Color.YELLOW.name())) {
+                    System.out.println("Color will now be yellow");
+
+                }
+
+            }
+
+        }
+
+    }
+    //COMPUTER WILD
+
+    public void UserWild(ArrayList<Card> cardH, UserHand us) {
+        for (int i = 0; i < cardH.size(); i++) {
+            if (cardH.get(i).getCardNumber() == Cards.WILD) {
+                System.out.println("Computer user will now choose a color");
+                Scanner input = new Scanner(System.in);
+                System.out.println("Please choose between the following: RED, "
+                        + "BLUE, YELLOW, OR GREEN.");
+                String c = input.nextLine();
+                //for red
+                if (c.equalsIgnoreCase(Color.RED.name())) {
+                    System.out.println("Color will now be red");
+                    //for blue
+                }
+                if (c.equalsIgnoreCase(Color.BLUE.name())) {
+                    System.out.println("Color will now be blue");
+                    //for green
+                }
+                if (c.equalsIgnoreCase(Color.GREEN.name())) {
+                    System.out.println("Color will now be green");
+                    //for yellow
+                }
+                if (c.equalsIgnoreCase(Color.YELLOW.name())) {
+                    System.out.println("Color will now be yellow");
+
+                }
+
+            }
+
+        }
+
+    }
+
+    
     
     
     public abstract void play();
