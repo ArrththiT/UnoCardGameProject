@@ -15,35 +15,17 @@ import java.util.Scanner;
  * @author dancye
  * @author Paul Bonenfant Jan 2020
  */
-
-    
-    
-
 public abstract class Game {
-    
-    
     
 
     private final String name;//the title of the game
     private ArrayList<Player> players;// the players of the game
-    private UserHand user = new UserHand();//user hand according to uml 
-    private ComputerHand ch = new ComputerHand();// computer hand according to uml
+    
 
 
     public Game(String name) {
         this.name = name;
         players = new ArrayList();
-        GroupOfCards goc = new GroupOfCards();
-        user = new UserHand();
-        
-    }
-
-    public UserHand getUser() {
-        return user;
-    }
-
-    public ComputerHand getCh() {
-        return ch;
     }
 
     /**
@@ -81,7 +63,7 @@ public abstract class Game {
             if (cardH.get(i).getCardNumber() == Cards.DRAWFOUR) {
                 System.out.println("Opponent will pick up 4 cards");
                 //adding cards to user hand
-              //  ch.addCards();
+                ch.addCards();
                 /*
                 whoever is working on computer and userhand please fill this!
                  */
@@ -105,7 +87,7 @@ public abstract class Game {
         }
     }
 
-    //SHOW LAST CARD ON GAMEPILE
+    //SHOW LAST CARD
     public void showLastCard(ArrayList<GamePile> pile) {
         for (int i = 0; i < pile.size(); i++) {
             System.out.println("last card will be the the "
@@ -129,12 +111,12 @@ public abstract class Game {
     }
     //COMPUTER DRAW TWO
 
-    public void computerDrawTwo(ArrayList<Card> cardH, ComputerHand ch, UserHand us) {
+    public void ComputerDrawTwo(ArrayList<Card> cardH, ComputerHand ch, UserHand us) {
         for (int i = 0; i < cardH.size(); i++) {
             if (cardH.get(i).getCardNumber() == Cards.DRAWTWO) {
                 System.out.println("Opponent will pick up 4 cards");
                 //adding cards to user hand
-              //  ch.addCards();
+                ch.addCards();
                 /*
                 whoever is working on computer and userhand please fill this!
                  */
@@ -146,7 +128,7 @@ public abstract class Game {
     }
 
     //COMPUTER WILD
-    public void computerWild(ArrayList<Card> cardH, ComputerHand ch) {
+    public void ComputerWild(ArrayList<Card> cardH, ComputerHand ch) {
         for (int i = 0; i < cardH.size(); i++) {
             if (cardH.get(i).getCardNumber() == Cards.WILD) {
                 System.out.println("Computer user will now choose a color");
@@ -179,7 +161,7 @@ public abstract class Game {
     }
     //COMPUTER WILD
 
-    public void userWild(ArrayList<Card> cardH, UserHand us) {
+    public void UserWild(ArrayList<Card> cardH, UserHand us) {
         for (int i = 0; i < cardH.size(); i++) {
             if (cardH.get(i).getCardNumber() == Cards.WILD) {
                 System.out.println("Computer user will now choose a color");
@@ -210,40 +192,58 @@ public abstract class Game {
         }
 
     }
-    
-    //computer drop card
-    public void computerDropCard(ArrayList<ComputerHand> ch){
-        System.out.println("please enter a card in the deck that you want to use");
-        Scanner in = new Scanner(System.in);
-
-        String cardHand = in.nextLine();
-        for (int i = 0; i < ch.size(); i++) {
-            //this should not error out please
-            
-       
-            
-        
-        
-    }
-    }
-    
-    //user drop card 
-    public void userDropCard(ArrayList<UserHand> us){
-        
-    }
-    
-    //show user hand
-    
 
     
     
-    //someone is working on play?
-    public abstract void play();
+    
+public void play(Card c) {
+        UserHand firstCom = null;
+        UserHand secondCom = null;
+        UserHand thirdCom = null;
+        UserHand user = null;
 
-    /**
-     * When the game is over, use this method to declare and display a winning player.
-     */
-    //someone is working on declare winner?
+UserHand [] players = {user, firstCom, secondCom, thirdCom};
+String [] names = {"You", "Janet", "Bender", "Dolores"};
+
+// a computer player plays a card, which is passed to the GUI for display;
+ int turn = 0;
+setLastCardPlayed (players[turn].comPlay(this, discarded));
+
+// if no card is left in the player's hand, end the game
+if (players[turn].getCards().size()<=0 || players[turn].getNumberOfCards() <= 0) {
+c.setWinner(names[turn]);
+endGame();
+}
+
+// determine next turn, which depends on the current game direction and number of skip
+turn += currentDirection;
+if (this.currentSkip == 1) {
+turn += currentDirection;
+this.setCurrentSkip(0);
+}
+// if turn is out of bound, change accordingly
+if (turn == -1) {
+turn = 3;
+} else if (turn == -2) {
+turn = 2;
+} else if (turn == 4) {
+turn = 0;
+} else if (turn == 5) {
+turn = 1;
+}
+}
     public abstract void declareWinner(); 
 
+public void endGame() {
+        boolean gameOver = true;
+}
+
+/** Get whether the game is over.
+*
+* @ return a boolean
+**/
+public boolean getGameOver() {
+        boolean gameOver = false;
+return gameOver;
+}
 }//end class
